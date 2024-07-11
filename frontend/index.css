@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+	font-family: Roboto;
+}
+
+:root {
+	--background-color: #111;
+	--background-color-light-1: #222;
+	--background-color-light-2: #333;
+	--background-color-light-3: #444;
+	--background-color-light-4: #555;
+	--text-color: #eee;
+	--accent-color: #7AC74F;
+	--link-blue: #1F6FEB;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	font-size: 1rem;
+}
