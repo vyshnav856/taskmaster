@@ -2,30 +2,6 @@
 	color: var(--accent-color);
 }
 
-.h1-s {
-	font-size: 2.986rem;
-}
-
-.h2-s {
-	font-size: 2.488rem;
-}
-
-.h3-s {
-	font-size: 2.074rem;
-}
-
-.h4-s {
-	font-size: 1.728rem;
-}
-
-.h5-s {
-	font-size: 1.44rem;
-}
-
-.h6-s {
-	font-size: 1.2rem;
-}
-
 a {
 	color: var(--link-blue);
 	text-decoration: none;

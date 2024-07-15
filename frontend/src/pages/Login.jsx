@@ -9,7 +9,7 @@ import "../styles/LoginSignup.css"
 
 export default function Login() {
 	const [formData, setFormData] = React.useState({
-		email: "",
+		username: "",
 		password:""
 	})
 
@@ -36,10 +36,10 @@ export default function Login() {
 
 	return (
 		<div className="responsive-container login-container">
-			<h1 className="h3-s">Login to <span className="highlight">TaskMaster</span></h1>
+			<h1 className="login-title">Login to <span className="highlight">TaskMaster</span></h1>
 
 			<form className="login-container__form" onSubmit={handleSubmit}>
-				<input name="email" type="text" placeholder="email" value={formData.email} onChange={handleChange} />
+				<input name="username" type="text" placeholder="username" value={formData.username} onChange={handleChange} />
 				<input name="password" type="password" placeholder="password" value={formData.password} onChange={handleChange} />
 
 				<LoadingButton buttonType="submit" classes="login-button" defaultText="Login" loadingText="Logging in, please wait..." />

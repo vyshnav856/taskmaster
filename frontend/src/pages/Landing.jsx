@@ -5,13 +5,13 @@ import ArrowRight from "../components/ArrowRight.jsx"
 
 import "../styles/shared.css"
 import "../styles/Landing.css"
-
+ 
 export default function Landing() {
 	return (
 		<div className="responsive-container landing-container">
 			<div className="landing-left">
 				<div className="landing-left__textbox">
-					<h1 className="h2-s">Welcome to <span className="highlight">TaskMaster</span>!</h1>
+					<h1 className="landing-title">Welcome to <span className="highlight">TaskMaster</span>!</h1>
 					<p>TaskMaster is a ticket-based work allocation system designed for efficiency and ease of use.</p>
 
 					<ul>

@@ -16,6 +16,11 @@
 	padding-top: 0.5rem;
 }
 
+.landing-title {
+	font-size: 2rem;
+	font-weight: 600;
+}
+
 .landing-right {
 	align-items: center;
 }
@@ -30,6 +35,7 @@
 .landing-right__link {
 	color: var(--text-color);
 	font-weight: 700;
+	font-size: 1.2rem;
 
 	display: flex;
 	align-items: center;
