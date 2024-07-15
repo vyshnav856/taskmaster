@@ -13,24 +13,14 @@ router.post("/signup", async (req, res) => {
 	const userExists = await UserModel.findOne({username})
 
 	if (userExists) {
-		const responseData = {
-			success: false,
-			message: "Username already exists!"
-		}
-
-		return res.json(responseData)
+		return res.json({success: false, message: "Username already exists!"})
 	}
 	
 	const hashedPassword = await bcrypt.hash(password, 10)
 	const newUser = new UserModel({username, password: hashedPassword, accountType})
 	await newUser.save()
 
-	const responseData = {
-		success: true,
-		message: "New account creation successful!"
-	}
-
-	return res.json(responseData)
+	return res.json({success: true, message: "New account creation successful!"})
 })
 
 router.post("/login", async (req, res) => {
