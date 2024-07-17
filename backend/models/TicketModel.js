@@ -5,7 +5,8 @@ const ticketSchema = new mongoose.Schema({
 	desc: {type: String},
 	issued: {type: Date},
 	claimed: {type: Boolean},
-	claimedBy: {type: String}
+	claimedBy: {type: String},
+	createdBy: {type: String}
 })
 
 const TicketModel = mongoose.model("tickets", ticketSchema)

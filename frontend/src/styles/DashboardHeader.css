@@ -1,0 +1,33 @@
+.dashboard-header-container {
+	border-radius: 5px;
+	background-color: var(--background-color-light-1);
+	padding: 0.5rem 1rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.dashboard-header__title {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.dashboard-header__user-details-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+@media (max-width: 1220px) {
+	.dashboard-header__title {
+		font-size: 1.2rem;
+	}
+
+	.dashboard-header__user-details-container {
+		flex-direction: column;
+		gap: 0;
+		align-items: flex-end;
+	}
+}

@@ -1,6 +1,7 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import {useCookies} from "react-cookie"
 
 import LoadingButton from "../components/LoadingButton.jsx"
 
@@ -12,6 +13,9 @@ export default function Login() {
 		username: "",
 		password:""
 	})
+
+	const [_, setCookies] = useCookies(["access_token"])
+	const navigate = useNavigate()
 
 	function handleChange(e) {
 		const {name, value} = e.target;
@@ -25,11 +29,28 @@ export default function Login() {
 		e.preventDefault();
 
 		try {
-			await axios.post("http://localhost:3001/login", formData)
+			const response = await axios.post("http://localhost:3001/auth/login", formData)
+
+			if (response.data.success) {
+				setCookies(response.data.token)
+				window.localStorage.setItem("username", formData.username)
+
+				if (response.accountType == 'dev')
+						navigate("/dashboard/developer")
+
+				else
+					navigate("/dashboard/manager")
+			}
+
+			else {
+				alert(response.data.message)
+				return
+			}
+			
 		}
 
-		catch(error) {
-			console.error(error)
+		catch (error) {
+			console.log(error)
 		}
 		
 	}
