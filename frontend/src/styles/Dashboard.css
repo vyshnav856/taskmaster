@@ -1,0 +1,33 @@
+.tickets-panel {
+	margin-top: 1rem;
+}
+
+.tickets-panel__title {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.tickets-panel__heading {
+	font-weight: 600;
+	font-size: 1.5rem;
+}
+
+.dashboard-create-ticket-button {
+	font-weight: 500;
+	color: var(--background-color);
+	background-color: var(--accent-color);
+	border-radius: 5px;
+	padding: 0.5rem 1rem;
+}
+
+.dashboard-create-ticket-button:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.dashboard-create-ticket-button:active {
+	transform: scale(0.98);
+}

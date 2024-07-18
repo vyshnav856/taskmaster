@@ -4,7 +4,7 @@ import {useCookies} from "react-cookie"
 
 import "../styles/DashboardHeader.css"
 
-export default function DashboardHeader(props) {
+export default function DashboardHeader() {
 	const [cookie, setCookie] = useCookies(["access_token"]) // 1 28 25
 	const navigate = useNavigate()
 
