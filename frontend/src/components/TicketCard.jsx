@@ -1,5 +1,6 @@
 import React from "react"
 import Cookies from "universal-cookie"
+import axios from "axios"
 
 import "../styles/TicketCard.css"
 
@@ -18,8 +19,40 @@ export default function TicketCard(props) {
 			return <p className="ticket-card__claimed"><span className="highlight-bold">Not claimed</span></p>
 	}
 
+	async function handleTicketDelete() {
+		const id = props._id
+		try {
+			const response = await axios.post("http://localhost:3001/ticket/delete", {id})
+
+			if (response.data.success) {
+				props.setRefresh(prev => !prev)
+			}
+		}
+
+		catch (error) {
+			console.log(error)
+		}
+	}
+
 	function renderTicketButtons() {
-		return <button>test function</button>
+		if (accountType == "man") {
+			return <button onClick={handleTicketDelete}>Delete ticket</button>
+		}
+
+		else {
+			if (props.claimed) {
+				return (
+					<>
+						<button>Unclaim ticket</button>
+						<button>Finish ticket</button>
+					</>
+				)
+			}
+
+			else {
+				return <button>Claim ticket</button>
+			}
+		}
 	}
 
 	return (
@@ -32,7 +65,7 @@ export default function TicketCard(props) {
 			</div>
 
 			<div className="ticket-card__right">
-				<p>will be done later</p>
+				{renderTicketButtons()}
 			</div>
 		</div>
 	)

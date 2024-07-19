@@ -1,7 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import axios from "axios"
-import Cookies from "universal-cookie"
 
 import DashboardHeader from "../components/DashboardHeader.jsx"
 import TicketCard from "../components/TicketCard.jsx"
@@ -12,6 +11,7 @@ export default function ManagerDashboard() {
 
 	const [filter, setFilter] = React.useState(0)
 	const [tickets, setTickets] = React.useState("Fetching...")
+	const [refresh, setRefresh] = React.useState(true)
 
 	async function fetchTickets() {
 		try {
@@ -24,7 +24,9 @@ export default function ManagerDashboard() {
 		}
 	}
 
-	React.useEffect(() => fetchTickets, [])
+	React.useEffect(() => {
+		fetchTickets()
+	}, [refresh])
 
 	function handleFilterChange(e) {
 		switch(e.target.name)  {
@@ -53,21 +55,21 @@ export default function ManagerDashboard() {
 
 			if (filter == 1) {
 				if (currentTicket.claimed)
-					filteredTickets.push(<TicketCard key={i} {...currentTicket} />)
+					filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 
 			else if (filter == 2) {
 				if (!currentTicket.claimed)
-					filteredTickets.push(<TicketCard key={i} {...currentTicket} />)
+					filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 
 			else if (filter == 3) {
 				if (currentTicket.finished)
-					filteredTickets.push(<TicketCard key={i} {...currentTicket} />)
+					filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 
 			else {
-				filteredTickets.push(<TicketCard key={i} {...currentTicket} />)
+				filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 		}
 

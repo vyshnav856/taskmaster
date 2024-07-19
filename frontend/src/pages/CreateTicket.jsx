@@ -33,7 +33,6 @@ export default function CreateTicket() {
 		try {
 			const response = await axios.post("http://localhost:3001/ticket/create", formData)
 			if (response.data.success) {
-				alert(response.data.message)
 				navigate("/dashboard/manager")
 			}
 
