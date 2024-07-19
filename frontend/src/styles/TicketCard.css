@@ -1,0 +1,13 @@
+.ticket-card-container {
+	border: 2px solid var(--text-color);
+	border-radius: 5px;
+	padding: 1rem;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.ticket-card__title {
+	font-size: 1.2rem;
+	font-weight: 600;
+}

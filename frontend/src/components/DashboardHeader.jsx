@@ -1,15 +1,15 @@
 import React from "react"
-import {Link, useNavigate} from "react-router-dom"
-import {useCookies} from "react-cookie"
+import {useNavigate} from "react-router-dom"
+import Cookies from "universal-cookie"
 
 import "../styles/DashboardHeader.css"
 
 export default function DashboardHeader() {
-	const [cookie, setCookie] = useCookies(["access_token"]) // 1 28 25
+	const cookies = new Cookies()
 	const navigate = useNavigate()
 
 	function logout() {
-		setCookie("access_token", "")
+		cookies.remove("access_token")
 		window.localStorage.clear()
 		navigate("/")
 	}

@@ -14,7 +14,7 @@ router.post("/create", async (req, res) => {
 })
 
 router.get("/get-all", async (req, res) => {
-	console.log("Ticket all get request received")
+	console.log("Ticket get all request received")
 
 	const allTickets = await TicketModel.find()
 

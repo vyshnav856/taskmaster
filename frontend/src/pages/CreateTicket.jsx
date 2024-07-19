@@ -15,7 +15,9 @@ export default function CreateTicket() {
 		createdBy: window.localStorage.getItem("username"),
 		issued: new Date(),
 		claimed: false,
-		claimedBy: null,
+		claimedBy: "",
+		finished: false,
+		finishedBy: ""
 	})
 
 	function handleChange(e) {

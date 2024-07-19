@@ -1,7 +1,7 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
-import {useCookies} from "react-cookie"
+import Cookies from "universal-cookie"
 
 import LoadingButton from "../components/LoadingButton.jsx"
 
@@ -14,8 +14,8 @@ export default function Login() {
 		password:""
 	})
 
-	const [_, setCookies] = useCookies(["access_token"])
 	const navigate = useNavigate()
+	const cookies = new Cookies()
 
 	function handleChange(e) {
 		const {name, value} = e.target;
@@ -32,10 +32,11 @@ export default function Login() {
 			const response = await axios.post("http://localhost:3001/auth/login", formData)
 
 			if (response.data.success) {
-				setCookies(response.data.token)
+				cookies.set("access_token", response.data.token)
+				cookies.set("account_type", response.data.accountType)
 				window.localStorage.setItem("username", formData.username)
 
-				if (response.accountType == 'dev')
+				if (response.data.accountType == 'dev')
 						navigate("/dashboard/developer")
 
 				else
@@ -62,6 +63,8 @@ export default function Login() {
 			<form className="login-container__form" onSubmit={handleSubmit}>
 				<input name="username" type="text" placeholder="username" value={formData.username} onChange={handleChange} />
 				<input name="password" type="password" placeholder="password" value={formData.password} onChange={handleChange} />
+
+				<button type="submit">dev submit form</button>
 
 				<LoadingButton buttonType="submit" classes="login-button" defaultText="Login" loadingText="Logging in, please wait..." />
 			</form>

@@ -4,10 +4,9 @@
 
 .tickets-panel__title {
 	display: flex;
-	flex-direction: column;
 	align-items: flex-start;
-	justify-content: center;
-	gap: 0.5rem;
+	justify-content: space-between;
+	padding: 0 0.5rem;
 }
 
 .tickets-panel__heading {
@@ -20,7 +19,7 @@
 	color: var(--background-color);
 	background-color: var(--accent-color);
 	border-radius: 5px;
-	padding: 0.5rem 1rem;
+	padding: 0.2rem 1rem;
 }
 
 .dashboard-create-ticket-button:hover {
@@ -30,4 +29,20 @@
 
 .dashboard-create-ticket-button:active {
 	transform: scale(0.98);
+}
+
+.tickets-list__navbar {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.tickets-list__navbar-link.selected {
+	text-decoration: underline;
+}
+
+.tickets-list__list {
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
