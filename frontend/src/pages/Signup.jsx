@@ -30,10 +30,10 @@ export default function Signup() {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		
-		if (formData.password.length < 8) {
-			alert("Password length should be greater than 8!")
-			return
-		}
+		// if (formData.password.length < 8) {
+		// 	alert("Password length should be greater than 8!")
+		// 	return
+		// }
 
 		if (formData.username.indexOf(" ") != -1) {
 			alert("Username should not contain spaces!")

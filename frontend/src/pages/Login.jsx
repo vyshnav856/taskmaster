@@ -34,7 +34,7 @@ export default function Login() {
 			if (response.data.success) {
 				cookies.set("access_token", response.data.token)
 				cookies.set("account_type", response.data.accountType)
-				window.localStorage.setItem("username", formData.username)
+				cookies.set("username", formData.username)
 
 				if (response.data.accountType == 'dev')
 						navigate("/dashboard/developer")
