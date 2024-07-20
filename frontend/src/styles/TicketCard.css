@@ -11,3 +11,20 @@
 	font-size: 1.2rem;
 	font-weight: 600;
 }
+
+.delete-ticket-button {
+	background-color: #7B0D1E;
+	color: var(--text-color);
+}
+
+.finish-ticket-button {
+	background-color: #069E2D;
+}
+
+.claimed-ticket-button-container, .ticket-card__right {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 0.5rem;
+}

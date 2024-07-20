@@ -9,6 +9,7 @@ import TicketCard from "../components/TicketCard.jsx"
 
 export default function DeveloperDashboard() {
 	const cookies = new Cookies()
+	const username = cookies.get("username")
 	
 	const [filter, setFilter] = React.useState(0)
 	const [refresh, setRefresh] = React.useState(true)
@@ -60,12 +61,12 @@ export default function DeveloperDashboard() {
 			}
 
 			else if (filter == 2) {
-				if (!currentTicket.claimed)
+				if (!currentTicket.claimed && !currentTicket.finished)
 					filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 
 			else if (filter == 3) {
-				if (currentTicket.finished)
+				if (currentTicket.finished && currentTicket.finishedBy == username)
 					filteredTickets.push(<TicketCard setRefresh={setRefresh} key={i} {...currentTicket} />)
 			}
 

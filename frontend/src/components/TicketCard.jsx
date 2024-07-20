@@ -7,13 +7,14 @@ import "../styles/TicketCard.css"
 export default function TicketCard(props) {
 	const cookies = new Cookies()
 	const accountType = cookies.get("account_type")
+	const username = cookies.get("username")
 
 	function renderTicketStatus() {
-		if (props.claimed)
-			return <p className="ticket-card__claimed"><span className="highlight-bold">Claimed by:</span> {props.claimedBy}</p>
-
-		else if (props.finished)
+		if (props.finished)
 			return <p className="ticket-card__claimed"><span className="highlight-bold">Finished by:</span> {props.finishedBy}</p>
+
+		else if (props.claimed)
+			return <p className="ticket-card__claimed"><span className="highlight-bold">Claimed by:</span> {props.claimedBy}</p>
 
 		else
 			return <p className="ticket-card__claimed"><span className="highlight-bold">Not claimed</span></p>
@@ -34,23 +35,75 @@ export default function TicketCard(props) {
 		}
 	}
 
+	async function handleClaimTicket() {
+		const id = props._id
+
+		try {
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: true})
+			if (response.data.success) {
+				props.setRefresh(prev => !prev)
+			}
+		}
+
+		catch (error) {
+			console.log(error)
+		}
+	}
+
+	async function handleUnclaimTicket() {
+		const id = props._id
+
+		try {
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: false})
+			if (response.data.success) {
+				props.setRefresh(prev => !prev)
+			}
+		}
+
+		catch (error) {
+			console.log(error)
+		}
+	}
+
+	async function handleFinishTicket() {
+		const id = props._id
+
+		try {
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: "finish"})
+			if (response.data.success) {
+				props.setRefresh(prev => !prev)
+			}
+		}
+
+		catch (error) {
+			console.log(error)
+		}
+	}
+
 	function renderTicketButtons() {
 		if (accountType == "man") {
-			return <button onClick={handleTicketDelete}>Delete ticket</button>
+			return <button className="delete-ticket-button" onClick={handleTicketDelete}>Delete ticket</button>
 		}
 
 		else {
-			if (props.claimed) {
+			if (props.finished) {
+				return;
+			}
+
+			else if (props.claimed) {
+				if (props.claimedBy != username)
+					return;
+
 				return (
-					<>
-						<button>Unclaim ticket</button>
-						<button>Finish ticket</button>
-					</>
+					<div className="claimed-ticket-button-container">
+						<button onClick={handleUnclaimTicket} className="delete-ticket-button">Unclaim ticket</button>
+						<button onClick={handleFinishTicket} className="finish-ticket-button">Finish ticket</button>
+					</div>
 				)
 			}
 
 			else {
-				return <button>Claim ticket</button>
+				return <button onClick={handleClaimTicket}>Claim ticket</button>
 			}
 		}
 	}
