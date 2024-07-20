@@ -9,7 +9,6 @@ const router = express.Router()
 router.post("/signup", async (req, res) => {
 	console.log("signup request received")
 	const {username, password, accountType} = req.body
-
 	const userExists = await UserModel.findOne({username})
 
 	if (userExists) {

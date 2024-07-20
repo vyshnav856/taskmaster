@@ -1,6 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import axios from "axios"
+import Cookies from "universal-cookie"
 
 import DashboardHeader from "../components/DashboardHeader.jsx"
 import TicketCard from "../components/TicketCard.jsx"
@@ -12,10 +13,15 @@ export default function ManagerDashboard() {
 	const [filter, setFilter] = React.useState(0)
 	const [tickets, setTickets] = React.useState("Fetching...")
 	const [refresh, setRefresh] = React.useState(true)
+	const cookies = new Cookies() 
 
 	async function fetchTickets() {
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
+		
 		try {
-			const fetchedTickets = await axios.get("http://localhost:3001/ticket/get-all")
+			const fetchedTickets = await axios.get("http://localhost:3001/ticket/get-all", {headers})
 			setTickets(fetchedTickets.data)
 		}
 

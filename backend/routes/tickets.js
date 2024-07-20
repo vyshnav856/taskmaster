@@ -1,10 +1,11 @@
 const express = require("express")
-
 const TicketModel = require("../models/TicketModel.js")
-
 const router = express.Router()
+const verifyMan = require("./verifyMan.js")
+const verifyDev = require("./verifyDev.js")
+const verifyUser = require("./verifyUser.js")
 
-router.post("/create", async (req, res) => {
+router.post("/create", verifyMan, async (req, res) => {
 	console.log("Ticket creation request received")
 	const newTicket = new TicketModel(req.body)
 	await newTicket.save()
@@ -12,7 +13,7 @@ router.post("/create", async (req, res) => {
 	return res.json({success: true, message: "Ticket creation successful!"})
 })
 
-router.post("/delete", async (req, res) => {
+router.post("/delete", verifyMan, async (req, res) => {
 	console.log("Ticket delete request received")
 	
 	try {
@@ -23,10 +24,9 @@ router.post("/delete", async (req, res) => {
 	catch (error) {
 		console.log(error)
 	}
-
 })
 
-router.get("/get-all", async (req, res) => {
+router.get("/get-all", verifyUser, async (req, res) => {
 	console.log("Ticket get all request received")
 
 	const allTickets = await TicketModel.find()
@@ -34,7 +34,7 @@ router.get("/get-all", async (req, res) => {
 	return res.json(allTickets)
 })
 
-router.post("/modify", async (req, res) => {
+router.post("/modify", verifyUser, async (req, res) => {
 	console.log("Ticket modify request received")
 
 	if (req.body.action == "finish") {

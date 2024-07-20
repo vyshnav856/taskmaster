@@ -22,8 +22,12 @@ export default function TicketCard(props) {
 
 	async function handleTicketDelete() {
 		const id = props._id
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
+
 		try {
-			const response = await axios.post("http://localhost:3001/ticket/delete", {id})
+			const response = await axios.post("http://localhost:3001/ticket/delete", {id}, {headers})
 
 			if (response.data.success) {
 				props.setRefresh(prev => !prev)
@@ -37,9 +41,12 @@ export default function TicketCard(props) {
 
 	async function handleClaimTicket() {
 		const id = props._id
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
 
 		try {
-			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: true})
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: true}, {headers})
 			if (response.data.success) {
 				props.setRefresh(prev => !prev)
 			}
@@ -52,9 +59,12 @@ export default function TicketCard(props) {
 
 	async function handleUnclaimTicket() {
 		const id = props._id
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
 
 		try {
-			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: false})
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: false}, {headers})
 			if (response.data.success) {
 				props.setRefresh(prev => !prev)
 			}
@@ -67,9 +77,12 @@ export default function TicketCard(props) {
 
 	async function handleFinishTicket() {
 		const id = props._id
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
 
 		try {
-			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: "finish"})
+			const response = await axios.post("http://localhost:3001/ticket/modify", {id, username, action: "finish"}, {headers})
 			if (response.data.success) {
 				props.setRefresh(prev => !prev)
 			}
