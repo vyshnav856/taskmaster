@@ -16,8 +16,12 @@ export default function DeveloperDashboard() {
 	const [tickets, setTickets] = React.useState("Fetching...")
 
 	async function fetchTickets() {
+		const headers = {
+			'Authorization': `Bearer ${cookies.get("access_token")}`
+		}
+
 		try {
-			const fetchedTickets = await axios.get("http://localhost:3001/ticket/get-all")
+			const fetchedTickets = await axios.get("http://localhost:3001/ticket/get-all", {headers})
 			setTickets(fetchedTickets.data)
 		}
 

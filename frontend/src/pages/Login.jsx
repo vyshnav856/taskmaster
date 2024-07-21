@@ -35,9 +35,9 @@ export default function Login() {
 				cookies.set("access_token", response.data.token)
 				cookies.set("account_type", response.data.accountType)
 				cookies.set("username", formData.username)
-
+				
 				if (response.data.accountType == 'dev')
-						navigate("/dashboard/developer")
+					navigate("/dashboard/developer")
 
 				else
 					navigate("/dashboard/manager")

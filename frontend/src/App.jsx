@@ -19,8 +19,8 @@ export default function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/dashboard/manager" element={<ManagerDashboard />} />
-				<Route path="/dashboard/developer" element={<DeveloperDashboard />} />
 				<Route path="/dashboard/create" element={<CreateTicket />} />
+				<Route path="/dashboard/developer" element={<DeveloperDashboard />} />
 				<Route path="*" element={<Error404 />} />
 			</Routes>
 		</BrowserRouter>

@@ -41,4 +41,38 @@ router.post("/login", async (req, res) => {
 	res.json({success: true, message: "Login successful!", token, accountType: userExists.accountType})
 })
 
+router.post("/verify-man", async (req, res) => {
+	console.log("Verify manager request received")
+	const token = req.body.token
+	jwt.verify(token, process.env.JWT_SECRET_KEY, (error, decoded) => {
+		if (error)
+			res.json({success: false, message: "Unauthorized"})
+
+		else {
+			if (decoded.accountType == "man")
+				res.json({success: true, message: "Authorized"})
+
+			else
+				res.json({success: false, message: "Unauthorized"})
+		}
+	})
+})
+
+router.post("/verify-dev", async (req, res) => {
+	console.log("Verify developer request received")
+	const token = req.body.token
+	jwt.verify(token, process.env.JWT_SECRET_KEY, (error, decoded) => {
+		if (error)
+			res.json({success: false, message: "Unauthorized"})
+
+		else {
+			if (decoded.accountType == "dev")
+				res.json({success: true, message: "Authorized"})
+
+			else
+				res.json({success: false, message: "Unauthorized"})
+		}
+	})
+})
+
 module.exports = router

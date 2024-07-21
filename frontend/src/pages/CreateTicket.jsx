@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import Cookies from "universal-cookie"
 
 import DashboardHeader from "../components/DashboardHeader.jsx"
 import LoadingButton from "../components/LoadingButton.jsx"
@@ -8,6 +9,7 @@ import LoadingButton from "../components/LoadingButton.jsx"
 import "../styles/CreateTicket.css"
 
 export default function CreateTicket() {
+	const cookies = new Cookies()
 	const navigate = useNavigate()
 	const [formData, setFormData] = React.useState({
 		title: "",
@@ -31,7 +33,11 @@ export default function CreateTicket() {
 		e.preventDefault()
 
 		try {
-			const response = await axios.post("http://localhost:3001/ticket/create", formData)
+			const headers = {
+				'Authorization': `Bearer ${cookies.get("access_token")}`
+			}
+
+			const response = await axios.post("http://localhost:3001/ticket/create", formData, {headers})
 			if (response.data.success) {
 				navigate("/dashboard/manager")
 			}
