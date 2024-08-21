@@ -71,7 +71,6 @@ export default function Signup() {
 						Create manager account
 					</label>
 				</div>
-				<button>submit (for dev only)</button>
 				<LoadingButton classes="login-button" buttonType="submit" defaultText="Sign up" loadingText="Signing up, please wait..." />
 			</form>
 

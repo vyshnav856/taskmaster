@@ -64,8 +64,6 @@ export default function Login() {
 				<input name="username" type="text" placeholder="username" value={formData.username} onChange={handleChange} />
 				<input name="password" type="password" placeholder="password" value={formData.password} onChange={handleChange} />
 
-				<button type="submit">dev submit form</button>
-
 				<LoadingButton buttonType="submit" classes="login-button" defaultText="Login" loadingText="Logging in, please wait..." />
 			</form>
 
