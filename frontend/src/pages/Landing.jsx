@@ -15,7 +15,7 @@ export default function Landing() {
 					<p>TaskMaster is a ticket-based work allocation system designed for efficiency and ease of use.</p>
 
 					<ul>
-						<li><a target="_blank" href="#">Source Code</a></li>
+						<li><a target="_blank" href="https://github.com/vyshnav856/taskmaster">Source Code</a></li>
 					</ul>
 				</div>
 			</div>
